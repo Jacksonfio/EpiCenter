@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 5%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 7%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 7%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 142 76% 36%;
+    --primary-foreground: 355 100% 97%;
+    --secondary: 217 33% 14%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 11%;
+    --muted-foreground: 215 20% 55%;
+    --accent: 217 33% 14%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 14%;
+    --input: 217 33% 14%;
+    --ring: 142 76% 36%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    background-image: 
+      radial-gradient(ellipse at 20% 20%, rgba(0, 255, 136, 0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(99, 102, 241, 0.04) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+  code, pre, .mono { font-family: 'JetBrains Mono', monospace; }
+}
+
+/* ─── Glassmorphism Cards ─────────────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-hover {
+  @apply glass transition-all duration-300;
+}
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(0, 255, 136, 0.2);
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.05);
+}
+
+/* ─── Agent Node Colors ────────────────────────────────────────────── */
+.agent-investigator { border-color: #818cf8; }
+.agent-investigator.active { box-shadow: 0 0 20px rgba(129, 140, 248, 0.4); }
+
+.agent-testwriter { border-color: #fb923c; }
+.agent-testwriter.active { box-shadow: 0 0 20px rgba(251, 146, 60, 0.4); }
+
+.agent-surgeon { border-color: #34d399; }
+.agent-surgeon.active { box-shadow: 0 0 20px rgba(52, 211, 153, 0.4); }
+
+.agent-judge { border-color: #f472b6; }
+.agent-judge.active { box-shadow: 0 0 20px rgba(244, 114, 182, 0.4); }
+
+/* ─── Log Terminal ─────────────────────────────────────────────────── */
+.terminal {
+  @apply bg-black/60 rounded-xl border border-white/10 overflow-auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.terminal-line-stdout { color: #d4d4d4; }
+.terminal-line-stderr { color: #f87171; }
+.terminal-line-info   { color: #60a5fa; }
+.terminal-line-pass   { color: #4ade80; }
+.terminal-line-fail   { color: #f87171; }
+
+/* ─── Confidence Score Ring ────────────────────────────────────────── */
+.confidence-ring {
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+/* ─── Scrollbar ────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 255, 136, 0.3); }
+
+/* ─── React Flow overrides ─────────────────────────────────────────── */
+.react-flow__background { background-color: transparent !important; }
+.react-flow__controls button {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+}
+.react-flow__edge-path { stroke: rgba(255, 255, 255, 0.2) !important; }
+.react-flow__edge-path.animated { stroke: rgba(0, 255, 136, 0.6) !important; }
+
+/* ─── Status badges ────────────────────────────────────────────────── */
+.badge-queued      { @apply bg-gray-500/20 text-gray-300 border-gray-500/30; }
+.badge-running     { @apply bg-blue-500/20 text-blue-300 border-blue-500/30; }
+.badge-completed   { @apply bg-green-500/20 text-green-300 border-green-500/30; }
+.badge-halted      { @apply bg-yellow-500/20 text-yellow-300 border-yellow-500/30; }
+.badge-error       { @apply bg-red-500/20 text-red-300 border-red-500/30; }
+
+/* ─── Glow text ────────────────────────────────────────────────────── */
+.glow-text { text-shadow: 0 0 20px rgba(0, 255, 136, 0.5); }
+.glow-text-purple { text-shadow: 0 0 20px rgba(129, 140, 248, 0.5); }
